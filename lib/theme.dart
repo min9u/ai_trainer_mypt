@@ -4,7 +4,7 @@ class AppTheme {
   AppTheme._();
 
   static const Color dark_grey = Color.fromARGB(255, 24, 29, 36);
-  static const Color black = Colors.black;
+  static const Color white = Colors.white;
   static const String fontName = 'WorkSans';
 
   static const TextTheme textTheme = TextTheme(
@@ -20,9 +20,9 @@ class AppTheme {
   static const display1 = TextStyle(
     fontFamily: fontName,
     fontWeight: FontWeight.bold,
-    fontSize: 36,
+    fontSize: 20,
     letterSpacing: 0.4,
     height: 0.9,
-    color: black,
+    color: white,
   );
 }
