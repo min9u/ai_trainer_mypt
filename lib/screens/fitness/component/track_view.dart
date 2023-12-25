@@ -7,21 +7,19 @@ class TrackView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     List<TrackPage> trackPageList = [];
-    int trackPageCount = TrackData.trackListData.length~/3;
+    int trackPageCount = TrackData.trackListData.length ~/ 3;
 
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.amber
-      ),
-      height: 320,
-      child: PageView.builder(
-        itemCount: trackPageCount,
-        itemBuilder: (context, index) {
-          return TrackPage(index: index,);
-        },
-        controller: PageController(viewportFraction: 0.9),
-      )
-    );
+        height: 320,
+        child: PageView.builder(
+          itemCount: trackPageCount,
+          itemBuilder: (context, index) {
+            return TrackPage(
+              index: index,
+            );
+          },
+          controller: PageController(viewportFraction: 0.9),
+        ));
   }
 }
 
@@ -34,18 +32,17 @@ class TrackPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var itemList = TrackData.trackListData;
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.green
-      ),
-      child: Column(
-        children: [
-          TrackItem(data: itemList[3*index]),
-          const SizedBox(height: 10,),
-          TrackItem(data: itemList[3*index+1]),
-          const SizedBox(height: 10,),
-          TrackItem(data: itemList[3*index+2])
-        ]
-      ),
+      child: Column(children: [
+        TrackItem(data: itemList[3 * index]),
+        const SizedBox(
+          height: 10,
+        ),
+        TrackItem(data: itemList[3 * index + 1]),
+        const SizedBox(
+          height: 10,
+        ),
+        TrackItem(data: itemList[3 * index + 2])
+      ]),
     );
   }
 }
@@ -58,7 +55,6 @@ class TrackItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Colors.blue,
       child: Row(
         children: [
           ClipRRect(
@@ -68,9 +64,11 @@ class TrackItem extends StatelessWidget {
               width: 100.0,
               height: 100.0,
               fit: BoxFit.cover,
-              ),
+            ),
           ),
-          SizedBox(width: 10,),
+          SizedBox(
+            width: 10,
+          ),
           Container(
             width: 200,
             alignment: Alignment.centerLeft,
@@ -81,9 +79,12 @@ class TrackItem extends StatelessWidget {
                 Text(data.title),
                 Row(
                   children: [
-                    SizedBox(child: Text(data.difficulty), width: 40,),
+                    SizedBox(
+                      child: Text(data.difficulty),
+                      width: 40,
+                    ),
                     Text('| ${data.time}분')
-                    ],
+                  ],
                 )
               ],
             ),
