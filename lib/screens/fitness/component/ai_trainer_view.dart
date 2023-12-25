@@ -1,4 +1,5 @@
 import 'package:ai_trainer_mypt/models/ai_trainer_view_data.dart';
+import 'package:ai_trainer_mypt/theme.dart';
 import 'package:flutter/material.dart';
 
 class AiTrainerView extends StatelessWidget {
@@ -63,7 +64,13 @@ class AiTrainerItem extends StatelessWidget {
                     fit: BoxFit.fitHeight),
               ),
             )),
-        Positioned(top: 70, left: 15, child: Text('스쿼트\n트레이너'))
+        Positioned(
+            top: 70,
+            left: 15,
+            child: Text(
+              'AI 스쿼트\n트레이너',
+              style: AppTheme.textTheme.headlineSmall,
+            ))
       ],
     );
     ;

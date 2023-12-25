@@ -1,3 +1,4 @@
+import 'package:ai_trainer_mypt/theme.dart';
 import 'package:flutter/material.dart';
 
 class TextView extends StatelessWidget {
@@ -10,7 +11,7 @@ class TextView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(this.title),
+        Text(this.title, style: AppTheme.textTheme.titleLarge),
       ],
     );
   }

@@ -1,4 +1,5 @@
 import 'package:ai_trainer_mypt/models/track_data.dart';
+import 'package:ai_trainer_mypt/theme.dart';
 import 'package:flutter/material.dart';
 
 class TrackView extends StatelessWidget {
@@ -76,14 +77,19 @@ class TrackItem extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(data.title),
+                Text(
+                  data.title,
+                  style: AppTheme.textTheme.bodyLarge,
+                ),
                 Row(
                   children: [
                     SizedBox(
-                      child: Text(data.difficulty),
+                      child: Text(data.difficulty,
+                          style: AppTheme.textTheme.bodyMedium),
                       width: 40,
                     ),
-                    Text('| ${data.time}분')
+                    Text('| ${data.time}분',
+                        style: AppTheme.textTheme.bodyMedium)
                   ],
                 )
               ],
