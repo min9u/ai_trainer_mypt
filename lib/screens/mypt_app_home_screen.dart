@@ -1,4 +1,8 @@
+import 'package:ai_trainer_mypt/screens/record/record_home_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'account/account_home_screen.dart';
+import 'fitness/fitness_home_screen.dart';
 
 class MyptAppHomeScreen extends StatefulWidget {
   const MyptAppHomeScreen({super.key});
@@ -40,16 +44,27 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
           ),
         ],
       ),
+      body: buildScreen(),
     );
   }
 
   buildAppBar(){
     if(currentPageIndex==0){
-      return AppBar(title: Text('운동'),);
+      return AppBar(title: Text('운동'), centerTitle: false,);
     }else if(currentPageIndex==1){
       return AppBar(title: Text('기록'));
     }else if(currentPageIndex==2){
       return AppBar(title: Text('내 정보'));
+    }
+  }
+
+  buildScreen(){
+    if(currentPageIndex==0){
+      return FitnessHomeScreen();
+    }else if(currentPageIndex==1){
+      return RecordHomeScreen();
+    }else if(currentPageIndex==2){
+      return AccountHomeScreen();
     }
   }
 }
