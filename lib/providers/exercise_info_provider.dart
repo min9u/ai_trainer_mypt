@@ -1,7 +1,8 @@
+import 'package:ai_trainer_mypt/models/exercise_description_data.dart';
 import 'package:flutter/material.dart';
 
 class ExerciseInfo {
-  String type;
+  exerciseType type;
   int targetCount;
   bool showAnimation;
   bool supportTTS;
@@ -16,7 +17,10 @@ class ExerciseInfo {
 
 class ExerciseInfoProvider extends ChangeNotifier {
   ExerciseInfo _exerciseInfo = ExerciseInfo(
-      type: 'squat', targetCount: 0, showAnimation: true, supportTTS: true);
+      type: exerciseType.squat,
+      targetCount: 5,
+      showAnimation: true,
+      supportTTS: true);
 
   ExerciseInfo get exerciseInfo => _exerciseInfo;
 

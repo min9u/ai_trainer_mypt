@@ -42,8 +42,8 @@ class AiTrainerItem extends StatelessWidget {
         Provider.of<ExerciseInfoProvider>(context, listen: false)
             .updateExerciseInfo(
           ExerciseInfo(
-              type: 'squat',
-              targetCount: 0,
+              type: data.type,
+              targetCount: 5,
               showAnimation: true,
               supportTTS: true),
         );

@@ -29,6 +29,22 @@ class AppTheme {
     bodySmall: caption,
   );
 
+  static const TextStyle whiteHeadline = TextStyle(
+    fontFamily: fontName,
+    fontWeight: FontWeight.bold,
+    fontSize: 30,
+    letterSpacing: 0.27,
+    color: white,
+  );
+
+  static const TextStyle whiteTitle = TextStyle(
+    fontFamily: fontName,
+    fontWeight: FontWeight.bold,
+    fontSize: 20,
+    letterSpacing: 0.27,
+    color: white,
+  );
+
   static const TextStyle display1 = TextStyle(
     // h4 -> display1
     fontFamily: fontName,
