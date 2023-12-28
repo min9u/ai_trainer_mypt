@@ -20,6 +20,7 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
     return Scaffold(
       appBar: buildAppBar(),
       bottomNavigationBar: NavigationBar(
+        height: 60,
         surfaceTintColor: AppTheme.white,
         backgroundColor: AppTheme.white,
         onDestinationSelected: (int index) {

@@ -1,0 +1,19 @@
+{
+    "exercises": [
+        {
+            "type": "스쿼트",
+            "backgroundImage": "assets/images/ai/squat.jpg",
+            "description": "스쿼트는 하체 근육을 전반적으로 강화하는데 효과적인 운동입니다."
+        },
+        {
+            "type": "풀업",
+            "backgroundImage": "assets/images/ai/pullup.jpg",
+            "description": "풀업은 등과 이두 근육을 강화하는데 효과적인 운동입니다."
+        },
+        {
+            "type": "푸쉬업",
+            "backgroundImage": "assets/images/ai/pushup.jpg",
+            "description": "푸쉬업은 가슴과 삼두 근육을 강화하는데 효과적인 운동입니다."
+        }
+    ]
+}

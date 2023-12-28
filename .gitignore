@@ -81,7 +81,6 @@ app.*.map.json
 
 # Flutter package
 **/pubspec.lock
-**/pubspec.yaml
 **/packages/
 
 # Dart analysis

@@ -1,6 +1,9 @@
 import 'package:ai_trainer_mypt/models/ai_trainer_view_data.dart';
+import 'package:ai_trainer_mypt/providers/exercise_info_provider.dart';
+import 'package:ai_trainer_mypt/screens/fitness/exercise_preparation_page.dart';
 import 'package:ai_trainer_mypt/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class AiTrainerView extends StatelessWidget {
   const AiTrainerView({super.key});
@@ -34,44 +37,60 @@ class AiTrainerItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: 330,
-          height: 160,
-        ),
-        Positioned(
-          top: 10,
-          child: Container(
+    return GestureDetector(
+      onTap: () {
+        Provider.of<ExerciseInfoProvider>(context, listen: false)
+            .updateExerciseInfo(
+          ExerciseInfo(
+              type: 'squat',
+              targetCount: 0,
+              showAnimation: true,
+              supportTTS: true),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => ExercisePreparationPage()),
+        );
+      },
+      child: Stack(
+        children: [
+          const SizedBox(
             width: 330,
-            height: 150,
-            decoration: BoxDecoration(
-              image: const DecorationImage(
-                  image: AssetImage('assets/images/ai/background_1.jpg'),
-                  fit: BoxFit.cover),
-              borderRadius: BorderRadius.circular(20.0),
+            height: 160,
+          ),
+          Positioned(
+            top: 10,
+            child: Container(
+              width: 330,
+              height: 150,
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage(data.backgroundImagePath),
+                    fit: BoxFit.cover),
+                borderRadius: BorderRadius.circular(20.0),
+              ),
             ),
           ),
-        ),
-        Positioned(
-            left: 170,
-            child: Container(
-              width: 160,
-              height: 160,
-              decoration: BoxDecoration(
-                image: const DecorationImage(
-                    image: AssetImage('assets/images/ai/squat.png'),
-                    fit: BoxFit.fitHeight),
-              ),
-            )),
-        Positioned(
-            top: 70,
-            left: 15,
-            child: Text(
-              'AI 스쿼트\n트레이너',
-              style: AppTheme.textTheme.headlineSmall,
-            ))
-      ],
+          Positioned(
+              left: 170,
+              child: Container(
+                width: 160,
+                height: 160,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage(data.bodyImagePath),
+                      fit: BoxFit.fitHeight),
+                ),
+              )),
+          Positioned(
+              top: 70,
+              left: 15,
+              child: Text(
+                data.title,
+                style: AppTheme.textTheme.headlineSmall,
+              ))
+        ],
+      ),
     );
     ;
   }

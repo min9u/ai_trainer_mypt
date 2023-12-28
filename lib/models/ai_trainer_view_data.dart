@@ -14,14 +14,14 @@ class AiTrainerViewData {
     AiTrainerViewData(
         backgroundImagePath: 'assets/images/ai/background_1.jpg',
         bodyImagePath: 'assets/images/ai/squat.png',
-        title: '스쿼트\n자세 분석'),
+        title: 'AI 스쿼트\n자세 분석'),
     AiTrainerViewData(
         backgroundImagePath: 'assets/images/ai/background_1.jpg',
-        bodyImagePath: 'assets/images/ai/squat.png',
-        title: '스쿼트\n자세 분석'),
+        bodyImagePath: 'assets/images/ai/pushup.png',
+        title: 'AI 푸쉬업\n자세 분석'),
     AiTrainerViewData(
         backgroundImagePath: 'assets/images/ai/background_1.jpg',
-        bodyImagePath: 'assets/images/ai/squat.png',
-        title: '스쿼트\n자세 분석'),
+        bodyImagePath: 'assets/images/ai/pullup.png',
+        title: 'AI 풀업\n자세 분석'),
   ];
 }
