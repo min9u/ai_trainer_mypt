@@ -38,15 +38,18 @@ class ExerciseDescriptionData {
   "exercises": [
     {
       "type": "squat",
-      "description": "스쿼트는 하체 근육을 강화하는데 효과적인 운동입니다."
+      "backgroundImage": "assets/images/ai/squat.jpg",
+      "description": "AI 스쿼트 자세분석에서는 아래와 같이 좋은 자세를 유지하고 운동을 하고 있는지 분석합니다.\n\n• 완전이완\n• 완전수축\n• 무릎과 골반의 동시수축\n• 무릎의 균형\n• 적절한 운동수행속도\n"
     },
     {
       "type": "pullup",
-      "description": "풀업은 상체 근육을 강화하는데 효과적인 운동입니다."
+      "backgroundImage": "assets/images/ai/pullup.jpg",
+      "description": "AI 스쿼트 자세분석에서는 아래와 같이 좋은 자세를 유지하고 운동을 하고 있는지 분석합니다.\n\n• 완전이완\n• 완전수축\n• 무릎과 골반의 동시수축\n• 무릎의 균형\n• 적절한 운동수행속도\n"
     },
     {
       "type": "pushup",
-      "description": "푸쉬업은 가슴과 삼두 근육을 강화하는데 효과적인 운동입니다."
+      "backgroundImage": "assets/images/ai/pushiup.jpg",
+      "description": "AI 스쿼트 자세분석에서는 아래와 같이 좋은 자세를 유지하고 운동을 하고 있는지 분석합니다.\n\n• 완전이완\n• 완전수축\n• 무릎과 골반의 동시수축\n• 무릎의 균형\n• 적절한 운동수행속도\n"
     }
   ]
 }

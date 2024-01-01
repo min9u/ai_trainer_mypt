@@ -10,6 +10,9 @@ class ExercisePreparationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<ExerciseInfoProvider>(context);
+    exerciseType type = provider.exerciseInfo.type;
+
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -184,14 +187,7 @@ class ExercisePreparationPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'AI 스쿼트 자세분석에서는 아래와 같이 좋은 자세를 유지하고 운동을 하고 있는지 분석합니다.',
-          style: AppTheme.textTheme.bodyLarge,
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Text(
-          '• 완전이완\n• 완전수축\n• 무릎과 골반의 동시수축\n• 무릎의 균형\n• 적절한 운동수행속도',
+          'AI 스쿼트 자세분석에서는 아래와 같이 좋은 자세를 유지하고 운동을 하고 있는지 분석합니다.\n\n• 완전이완\n• 완전수축\n• 무릎과 골반의 동시수축\n• 무릎의 균형\n• 적절한 운동수행속도',
           style: AppTheme.textTheme.bodyLarge,
         ),
         SizedBox(
