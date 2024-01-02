@@ -10,8 +10,21 @@ class ExercisePreparationPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // json 에서 type에 해당하는 데이터와 index를 뽑는 과정
     var provider = Provider.of<ExerciseInfoProvider>(context);
-    exerciseType type = provider.exerciseInfo.type;
+    ExerciseType type = provider.exerciseInfo.type;
+    ExerciseDescriptionData data =
+        ExerciseDescriptionData.parseExerciseDescriptionData(
+            ExerciseDescriptionData.descriptionJson);
+    List<ExerciseDescription> exercises = data.exercises;
+    int typeIndex = 0;
+    for (int i = 0; i < exercises.length; i++) {
+      if (exercises[i].type == type) {
+        typeIndex = i;
+        break;
+      }
+    }
+    print(typeIndex);
 
     return Scaffold(
         appBar: AppBar(
@@ -56,8 +69,8 @@ class ExercisePreparationPage extends StatelessWidget {
                                 height: 260,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage(
-                                            'assets/images/ai/pullup.jpg'),
+                                        image: AssetImage(exercises[typeIndex]
+                                            .backgroundImage),
                                         fit: BoxFit.fitWidth)),
                               ),
                             ),
@@ -65,7 +78,7 @@ class ExercisePreparationPage extends StatelessWidget {
                               left: 20,
                               bottom: 60,
                               child: Text(
-                                'AI 스쿼트\n운동자세분석',
+                                exercises[typeIndex].title,
                                 style: AppTheme.whiteHeadline,
                               ),
                             ),
@@ -88,7 +101,8 @@ class ExercisePreparationPage extends StatelessWidget {
                       padding: EdgeInsets.symmetric(horizontal: 20),
                       child: Column(
                         children: [
-                          _buildExerciseDescription(context),
+                          _buildExerciseDescription(
+                              context, exercises[typeIndex].description),
                           SizedBox(
                             height: 15,
                           ),
@@ -182,19 +196,14 @@ class ExercisePreparationPage extends StatelessWidget {
     );
   }
 
-  Widget _buildExerciseDescription(BuildContext context) {
+  Widget _buildExerciseDescription(BuildContext context, String text) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'AI 스쿼트 자세분석에서는 아래와 같이 좋은 자세를 유지하고 운동을 하고 있는지 분석합니다.\n\n• 완전이완\n• 완전수축\n• 무릎과 골반의 동시수축\n• 무릎의 균형\n• 적절한 운동수행속도',
+          text,
           style: AppTheme.textTheme.bodyLarge,
         ),
-        SizedBox(
-          height: 10,
-        ),
-        Text('자세에 신경쓰면서 완벽한 스쿼트에 도전해보세요! 🔥',
-            style: AppTheme.textTheme.bodyLarge),
       ],
     );
   }
