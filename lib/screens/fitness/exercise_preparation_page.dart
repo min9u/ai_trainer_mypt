@@ -24,7 +24,6 @@ class ExercisePreparationPage extends StatelessWidget {
         break;
       }
     }
-    print(typeIndex);
 
     return Scaffold(
         appBar: AppBar(
@@ -119,22 +118,27 @@ class ExercisePreparationPage extends StatelessWidget {
               ),
               Positioned(
                 bottom: 50,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '운동 시작',
-                    style: AppTheme.whiteTitle,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/camera');
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      '운동 시작',
+                      style: AppTheme.whiteTitle,
+                    ),
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                          Color.fromRGBO(82, 201, 115, 1),
+                          Color.fromRGBO(77, 190, 158, 1)
+                        ]),
+                        borderRadius: BorderRadius.horizontal(
+                            left: Radius.circular(40),
+                            right: Radius.circular(40))),
                   ),
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        Color.fromRGBO(82, 201, 115, 1),
-                        Color.fromRGBO(77, 190, 158, 1)
-                      ]),
-                      borderRadius: BorderRadius.horizontal(
-                          left: Radius.circular(40),
-                          right: Radius.circular(40))),
                 ),
               ),
             ],
