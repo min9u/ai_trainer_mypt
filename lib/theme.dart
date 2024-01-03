@@ -94,7 +94,7 @@ class AppTheme {
     fontFamily: fontName,
     fontWeight: FontWeight.w400,
     fontSize: 16,
-    letterSpacing: 0,
+    letterSpacing: 0.22,
     color: darkText,
   );
 

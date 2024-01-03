@@ -126,7 +126,7 @@ class ExercisePreparationPage extends StatelessWidget {
                   child: Container(
                     alignment: Alignment.center,
                     child: Text(
-                      '운동 시작',
+                      '운동 준비',
                       style: AppTheme.whiteTitle,
                     ),
                     width: MediaQuery.of(context).size.width * 0.8,

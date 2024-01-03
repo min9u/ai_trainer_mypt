@@ -1,0 +1,143 @@
+import 'package:ai_trainer_mypt/theme.dart';
+import 'package:flutter/material.dart';
+import 'package:lorem_ipsum/lorem_ipsum.dart';
+import 'package:permission_handler/permission_handler.dart';
+
+class TmpUiPage extends StatefulWidget {
+  const TmpUiPage({super.key});
+
+  @override
+  State<TmpUiPage> createState() => _TmpUiPageState();
+}
+
+class _TmpUiPageState extends State<TmpUiPage>
+    with SingleTickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<Offset> slideAnimation;
+  bool isExerciseStarted = false;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+    );
+    slideAnimation = Tween<Offset>(
+      begin: Offset(0, 0),
+      end: Offset(0, 3), // 변경: 화면 아래로 나가도록 수정
+    ).animate(CurvedAnimation(
+      curve: Curves.easeInOut,
+      parent: animationController,
+    ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+      color: Colors.white,
+      child: Stack(
+        alignment: AlignmentDirectional.topCenter,
+        // fit: StackFit.expand,
+        children: [
+          Center(child: const Text('hello')),
+          _buildStartStopButton(),
+          if (animationController.status == AnimationStatus.dismissed)
+            ModalBarrier(
+              color: Colors.black.withOpacity(0.5),
+              dismissible: false,
+            ),
+          _buildPrecautionsContainer(),
+        ],
+      ),
+    ));
+  }
+
+  Widget _buildStartStopButton() => Positioned(
+        bottom: 20,
+        child: GestureDetector(
+          onTap: () {
+            setState(() {
+              isExerciseStarted = !isExerciseStarted;
+            });
+          },
+          child: AnimatedContainer(
+            alignment: Alignment.center,
+            child: isExerciseStarted
+                ? Icon(
+                    Icons.stop_rounded,
+                    color: Color.fromRGBO(83, 189, 113, 1),
+                    size: 40,
+                  ) // 텍스트가 없어지도록 함
+                : Text(
+                    '운동 시작',
+                    style: AppTheme.whiteTitle,
+                  ),
+            width: isExerciseStarted
+                ? 60
+                : MediaQuery.of(context).size.width * 0.8,
+            height: 60,
+            decoration: isExerciseStarted
+                ? BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.horizontal(
+                        left: Radius.circular(30), right: Radius.circular(30)),
+                    border: Border.all(
+                        width: 2, color: Color.fromRGBO(82, 201, 115, 1)))
+                : BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        Color.fromRGBO(82, 201, 115, 1),
+                        Color.fromRGBO(77, 190, 158, 1),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.horizontal(
+                      left: Radius.circular(40),
+                      right: Radius.circular(40),
+                    ),
+                  ),
+            duration: Duration(milliseconds: 300), // 애니메이션 지속 시간
+          ),
+        ),
+      );
+
+  Widget _buildPrecautionsContainer() => SlideTransition(
+        position: slideAnimation,
+        child: Container(
+          decoration: BoxDecoration(
+            color: AppTheme.chipBackground,
+            borderRadius: BorderRadius.circular(40.0),
+          ),
+          margin: EdgeInsets.only(top: 140, bottom: 100, left: 10, right: 10),
+          padding: EdgeInsets.all(30),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text('유의 사항', style: AppTheme.textTheme.headlineSmall),
+              Text(
+                '● 몸 전체가 화면에 나오도록 해주세요.\n\n● AI가 사물을 사람으로 인식할 수 있으니, 주변의 사물들을 정리주세요.\n\n● 배경과 구별되는 색의 옷을 착용해주세요.\n\n● 운동시작 버튼을 누르고 5초 후에 분석이 시작됩니다.',
+                style: AppTheme.textTheme.bodyLarge,
+              ),
+              ElevatedButton(
+                // style: ElevatedButton.styleFrom(
+                //   backgroundColor: Colors.white,
+                // ),
+                onPressed: () {
+                  setState(() {
+                    if (animationController.status ==
+                        AnimationStatus.dismissed) {
+                      animationController.forward();
+                    } else if (animationController.status ==
+                        AnimationStatus.completed) {
+                      animationController.reverse();
+                    }
+                  });
+                },
+                child: Text('확인'),
+              ),
+            ],
+          ),
+        ),
+      );
+}

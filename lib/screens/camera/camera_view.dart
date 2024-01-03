@@ -70,9 +70,6 @@ class _CameraViewState extends State<CameraView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _liveFeedBody(),
-      appBar: AppBar(
-        title: Text('hi'),
-      ),
     );
   }
 
@@ -81,24 +78,26 @@ class _CameraViewState extends State<CameraView> {
     if (_controller == null) return Container();
     if (_controller?.value.isInitialized == false) return Container();
     return Container(
-      color: Colors.black,
+      color: Colors.white,
       child: Stack(
         fit: StackFit.expand,
         children: <Widget>[
           Center(
-            child: _changingCameraLens
-                ? Center(
-                    child: const Text('Changing camera lens'),
-                  )
-                : CameraPreview(
-                    _controller!,
-                    child: widget.customPaint,
-                  ),
-          ),
+              child: _changingCameraLens
+                  ? Center(
+                      child: const Text('Changing camera lens'),
+                    )
+                  : Center(child: const Text('디자인'))
+              // 디자인을 위해 잠시 각주
+              // : CameraPreview(
+              //     _controller!,
+              //     child: widget.customPaint,
+              //   ),
+              ),
           _backButton(),
           _switchLiveCameraToggle(),
           _detectionViewModeToggle(),
-          _zoomControl(),
+          // _zoomControl(),
           _exposureControl(),
         ],
       ),
