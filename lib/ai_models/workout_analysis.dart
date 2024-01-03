@@ -1,4 +1,4 @@
-import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import 'workout_result.dart';
 
 abstract class WorkoutAnalysis {
@@ -36,15 +36,15 @@ abstract class WorkoutAnalysis {
     _detecting = false;
   }
 
-  WorkoutResult makeWorkoutResult() {
-    return WorkoutResult(
-        user: 'user1',
-        uid: "1",
-        workoutName: 'workout',
-        count: 0,
-        feedbackCounts: [0],
-        score: [0]);
-  }
+  // WorkoutResult makeWorkoutResult() {
+  //   return WorkoutResult(
+  //       user: 'user1',
+  //       uid: "1",
+  //       workoutName: 'workout',
+  //       count: 0,
+  //       feedbackCounts: [0],
+  //       score: [0]);
+  // }
 
   void stopAnalysing() {
     _end = true;
@@ -57,5 +57,5 @@ abstract class WorkoutAnalysis {
     });
   }
 
-  void saveWorkoutResult() async {}
+  // void saveWorkoutResult() async {}
 }

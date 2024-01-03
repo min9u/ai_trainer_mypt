@@ -1,5 +1,5 @@
 import 'dart:core';
-import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import 'dart:math' as m;
 
 List<List<double>> findXyz(

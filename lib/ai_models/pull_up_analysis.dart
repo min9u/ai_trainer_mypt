@@ -1,16 +1,13 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 import '../utils/function_utils.dart';
 import 'dart:convert';
 
 import 'package:ai_trainer_mypt/utils/tts_voice.dart';
-import 'package:google_ml_kit/google_ml_kit.dart';
+import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import 'workout_analysis.dart';
 import 'workout_result.dart';
 import 'package:ai_trainer_mypt/utils/function_utils.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 const Map<String, List<int>> jointIndx = {
   'right_elbow': [16, 14, 12],
@@ -296,77 +293,77 @@ class PullUpAnalysis implements WorkoutAnalysis {
     });
   }
 
-  WorkoutResult makeWorkoutResult() {
-    CollectionReference user_file =
-        FirebaseFirestore.instance.collection('user_file');
-    var currentUser = FirebaseAuth.instance.currentUser;
-    String userUid = currentUser!.uid;
-    List<int> feedbackCounts = <int>[]; // sum of feedback which value is 1
-    for (String key in _feedBack.keys.toList()) {
-      int tmp = 0;
-      for (int i = 0; i < _count; i++) {
-        tmp += _feedBack[key]![i];
-      }
-      feedbackCounts.add(tmp);
-    }
-    WorkoutResult workoutResult = WorkoutResult(
-        user: '', // firebase로 구현
-        uid: userUid, // firebase로 구현
-        workoutName: 'pull_up',
-        count: _count,
-        score: workoutToScore(),
-        feedbackCounts: feedbackCounts);
-    print(jsonEncode(workoutResult));
-    return workoutResult;
-  }
+  // WorkoutResult makeWorkoutResult() {
+  //   CollectionReference user_file =
+  //       FirebaseFirestore.instance.collection('user_file');
+  //   var currentUser = FirebaseAuth.instance.currentUser;
+  //   String userUid = currentUser!.uid;
+  //   List<int> feedbackCounts = <int>[]; // sum of feedback which value is 1
+  //   for (String key in _feedBack.keys.toList()) {
+  //     int tmp = 0;
+  //     for (int i = 0; i < _count; i++) {
+  //       tmp += _feedBack[key]![i];
+  //     }
+  //     feedbackCounts.add(tmp);
+  //   }
+  //   WorkoutResult workoutResult = WorkoutResult(
+  //       user: '', // firebase로 구현
+  //       uid: userUid, // firebase로 구현
+  //       workoutName: 'pull_up',
+  //       count: _count,
+  //       score: workoutToScore(),
+  //       feedbackCounts: feedbackCounts);
+  //   print(jsonEncode(workoutResult));
+  //   return workoutResult;
+  // }
 
-  void saveWorkoutResult() async {
-    WorkoutResult workoutResult = makeWorkoutResult();
-    if (workoutResult.count == 0) {
-      // exclude empty data for database safety
-      return;
-    }
-    String json = jsonEncode(workoutResult);
+  // void saveWorkoutResult() async {
+  //   WorkoutResult workoutResult = makeWorkoutResult();
+  //   if (workoutResult.count == 0) {
+  //     // exclude empty data for database safety
+  //     return;
+  //   }
+  //   String json = jsonEncode(workoutResult);
 
-    WidgetsFlutterBinding.ensureInitialized();
-    await Firebase.initializeApp();
-    CollectionReference exerciseDB =
-        FirebaseFirestore.instance.collection('exercise_DB');
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   await Firebase.initializeApp();
+  //   CollectionReference exerciseDB =
+  //       FirebaseFirestore.instance.collection('exercise_DB');
 
-    Future<void> exercisestart() {
-      // Call the user's CollectionReference to add a new user
-      print("streamstart");
-      return exerciseDB
-          .doc()
-          .set(workoutResult.toJson())
-          .then((value) => print("json added"))
-          .catchError((error) => print("Failed to add json: $error"));
-    }
+  //   Future<void> exercisestart() {
+  //     // Call the user's CollectionReference to add a new user
+  //     print("streamstart");
+  //     return exerciseDB
+  //         .doc()
+  //         .set(workoutResult.toJson())
+  //         .then((value) => print("json added"))
+  //         .catchError((error) => print("Failed to add json: $error"));
+  //   }
 
-    WidgetsFlutterBinding.ensureInitialized();
-    Firebase.initializeApp();
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   Firebase.initializeApp();
 
-    var currentUser = FirebaseAuth.instance.currentUser;
-    String uid_name = currentUser!.uid;
-    int new_pullup = workoutResult.toJson()['pull_up'];
-    print(uid_name);
+  //   var currentUser = FirebaseAuth.instance.currentUser;
+  //   String uid_name = currentUser!.uid;
+  //   int new_pullup = workoutResult.toJson()['pull_up'];
+  //   print(uid_name);
 
-    CollectionReference leaderboard =
-        FirebaseFirestore.instance.collection('leaderboard_DB');
+  //   CollectionReference leaderboard =
+  //       FirebaseFirestore.instance.collection('leaderboard_DB');
 
-    var docSnapshot = await leaderboard.doc(uid_name).get();
-    Map<String, dynamic>? data = docSnapshot.data() as Map<String, dynamic>?;
-    int old_pullup = data!['pull_up'];
-    int old_score = data['score'];
+  //   var docSnapshot = await leaderboard.doc(uid_name).get();
+  //   Map<String, dynamic>? data = docSnapshot.data() as Map<String, dynamic>?;
+  //   int old_pullup = data!['pull_up'];
+  //   int old_score = data['score'];
 
-    if (new_pullup > old_pullup) {
-      int new_score = new_pullup - old_pullup + old_score;
-      leaderboard
-          .doc(uid_name)
-          .update({'pull_up': new_pullup, 'score': new_score});
-    }
+  //   if (new_pullup > old_pullup) {
+  //     int new_score = new_pullup - old_pullup + old_score;
+  //     leaderboard
+  //         .doc(uid_name)
+  //         .update({'pull_up': new_pullup, 'score': new_score});
+  //   }
 
-    exercisestart();
-    print("streamend");
-  }
+  //   exercisestart();
+  //   print("streamend");
+  // }
 }

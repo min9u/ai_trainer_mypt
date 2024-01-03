@@ -121,7 +121,7 @@ class ExercisePreparationPage extends StatelessWidget {
                 bottom: 50,
                 child: GestureDetector(
                   onTap: () {
-                    Navigator.pushNamed(context, '/camera');
+                    Navigator.pushNamed(context, '/aiTrainer');
                   },
                   child: Container(
                     alignment: Alignment.center,
