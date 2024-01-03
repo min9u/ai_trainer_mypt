@@ -27,9 +27,10 @@ class ExercisePreparationPage extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title: Text(
             '운동 준비',
-            style: AppTheme.textTheme.titleLarge,
+            style: AppTheme.textTheme.titleMedium,
           ),
           actions: [
             IconButton(
@@ -194,7 +195,7 @@ class ExercisePreparationPage extends StatelessWidget {
         SizedBox(height: 5),
         Text(
           '반복횟수 : ${provider.exerciseInfo.targetCount}',
-          style: AppTheme.textTheme.titleLarge,
+          style: AppTheme.textTheme.titleMedium,
         ),
       ],
     );

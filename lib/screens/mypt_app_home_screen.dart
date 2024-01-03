@@ -31,9 +31,10 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
         selectedIndex: currentPageIndex,
         destinations: const [
           NavigationDestination(
-              selectedIcon: Icon(Icons.run_circle),
-              icon: Icon(Icons.run_circle_outlined),
-              label: '운동'),
+            selectedIcon: Icon(Icons.run_circle),
+            icon: Icon(Icons.run_circle_outlined),
+            label: '운동',
+          ),
           NavigationDestination(
               selectedIcon: Icon(Icons.insert_chart),
               icon: Icon(Icons.insert_chart_outlined),
@@ -54,7 +55,7 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
         backgroundColor: AppTheme.chipBackground,
         title: Text(
           '운동',
-          style: AppTheme.textTheme.headlineSmall,
+          style: AppTheme.textTheme.titleLarge,
         ),
         centerTitle: false,
       );
