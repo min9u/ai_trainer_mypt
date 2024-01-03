@@ -1,3 +1,4 @@
+import 'package:ai_trainer_mypt/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -33,7 +34,10 @@ class _CameraPageState extends State<CameraPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Camera Page'),
+        title: Text(
+          'AI 트레이너',
+          style: AppTheme.textTheme.titleMedium,
+        ),
       ),
       body: FutureBuilder<void>(
         future: _initializeControllerFuture,
