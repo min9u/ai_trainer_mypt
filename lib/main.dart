@@ -2,6 +2,7 @@ import 'package:ai_trainer_mypt/providers/exercise_info_provider.dart';
 import 'package:ai_trainer_mypt/screens/camera/ai_trainer_page.dart';
 import 'package:ai_trainer_mypt/screens/camera/tmp_ui_page.dart';
 import 'package:ai_trainer_mypt/screens/mypt_app_home_screen.dart';
+import 'package:ai_trainer_mypt/theme.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +36,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(fontFamily: "Pretendard"),
+        theme: AppTheme.myAppTheme,
         initialRoute: '/',
         routes: {
           '/': (context) => MyptAppHomeScreen(),

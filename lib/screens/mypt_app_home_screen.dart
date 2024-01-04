@@ -21,6 +21,7 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
       appBar: buildAppBar(),
       bottomNavigationBar: NavigationBar(
         height: 60,
+        indicatorColor: Color.fromRGBO(255, 255, 255, 0),
         surfaceTintColor: AppTheme.white,
         backgroundColor: AppTheme.white,
         onDestinationSelected: (int index) {
@@ -31,18 +32,20 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
         selectedIndex: currentPageIndex,
         destinations: const [
           NavigationDestination(
-            selectedIcon: Icon(Icons.run_circle),
-            icon: Icon(Icons.run_circle_outlined),
+            selectedIcon: Icon(
+              IconData(0xf70c, fontFamily: 'Icon', fontPackage: null),
+              color: Color.fromRGBO(80, 195, 134, 1),
+            ),
+            icon: Icon(IconData(0xf70c, fontFamily: 'Icon', fontPackage: null)),
             label: '운동',
           ),
           NavigationDestination(
-              selectedIcon: Icon(Icons.insert_chart),
-              icon: Icon(Icons.insert_chart_outlined),
+              selectedIcon: Icon(
+                  IconData(0xf022, fontFamily: 'Icon', fontPackage: null),
+                  color: Color.fromRGBO(80, 195, 134, 1)),
+              icon:
+                  Icon(IconData(0xf022, fontFamily: 'Icon', fontPackage: null)),
               label: '기록'),
-          NavigationDestination(
-              selectedIcon: Icon(Icons.person),
-              icon: Icon(Icons.person_outline),
-              label: '나'),
         ],
       ),
       body: buildScreen(),
@@ -52,7 +55,15 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
   buildAppBar() {
     if (currentPageIndex == 0) {
       return AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 18),
+            child:
+                Icon(IconData(0xf3ee, fontFamily: 'Icon', fontPackage: null)),
+          )
+        ],
         backgroundColor: AppTheme.chipBackground,
+        surfaceTintColor: AppTheme.chipBackground,
         title: Text(
           '운동',
           style: AppTheme.textTheme.titleLarge,
@@ -62,14 +73,11 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
     } else if (currentPageIndex == 1) {
       return AppBar(
           backgroundColor: AppTheme.chipBackground,
+          surfaceTintColor: AppTheme.chipBackground,
           title: Text(
             '기록',
             style: AppTheme.textTheme.headlineSmall,
           ));
-    } else if (currentPageIndex == 2) {
-      return AppBar(
-          backgroundColor: AppTheme.chipBackground,
-          title: Text('내 정보', style: AppTheme.textTheme.headlineSmall));
     }
   }
 
@@ -78,8 +86,6 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
       return FitnessHomeScreen();
     } else if (currentPageIndex == 1) {
       return RecordHomeScreen();
-    } else if (currentPageIndex == 2) {
-      return AccountHomeScreen();
     }
   }
 }

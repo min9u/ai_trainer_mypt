@@ -20,6 +20,19 @@ class AppTheme {
   static const Color spacer = Color(0xFFF2F2F2);
   static const String fontName = 'Pretendard';
 
+  static ThemeData myAppTheme = ThemeData(
+      navigationBarTheme: NavigationBarThemeData(
+        labelTextStyle: MaterialStateProperty.resolveWith((state) {
+          if (state.contains(MaterialState.selected)) {
+            return const TextStyle(
+                color: Color.fromRGBO(80, 195, 134, 1),
+                fontWeight: FontWeight.w400);
+          }
+          return const TextStyle(color: darkText, fontWeight: FontWeight.w400);
+        }),
+      ),
+      fontFamily: fontName);
+
   static const TextTheme textTheme = TextTheme(
       headlineMedium: headlineMedium,
       headlineSmall: headlineSmall,

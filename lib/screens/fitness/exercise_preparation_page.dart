@@ -190,13 +190,13 @@ class ExercisePreparationPage extends StatelessWidget {
 
     return Column(
       children: [
-        Text(emojiMaker(provider.exerciseInfo.targetCount),
-            style: AppTheme.textTheme.headlineSmall),
-        SizedBox(height: 5),
         Text(
           '반복횟수 : ${provider.exerciseInfo.targetCount}',
           style: AppTheme.textTheme.titleMedium,
         ),
+        Text(emojiMaker(provider.exerciseInfo.targetCount),
+            style: AppTheme.textTheme.headlineSmall),
+        SizedBox(height: 5),
       ],
     );
   }

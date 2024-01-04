@@ -101,6 +101,10 @@ flutter:
           weight: 800
         - asset: assets/fonts/Pretendard-Black.ttf
           weight: 900
+    - family: Icon
+      fonts:
+        - asset: assets/fonts/For-Icon.ttf
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
