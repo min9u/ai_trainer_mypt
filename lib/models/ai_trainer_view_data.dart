@@ -5,13 +5,13 @@ class AiTrainerViewData {
   ExerciseType type;
   String backgroundImagePath;
   String bodyImagePath;
-  String title;
+  String prepararationTitle;
 
   AiTrainerViewData({
     required this.type,
     required this.backgroundImagePath,
     required this.bodyImagePath,
-    required this.title,
+    required this.prepararationTitle,
   });
 
   static List<AiTrainerViewData> aiTrainerViewDataList = [
@@ -19,16 +19,16 @@ class AiTrainerViewData {
         type: ExerciseType.squat,
         backgroundImagePath: 'assets/images/ai/background_1.jpg',
         bodyImagePath: 'assets/images/ai/squat.png',
-        title: 'AI 스쿼트\n트레이너'),
+        prepararationTitle: 'AI 스쿼트\n트레이너'),
     AiTrainerViewData(
         type: ExerciseType.pushup,
         backgroundImagePath: 'assets/images/ai/background_1.jpg',
         bodyImagePath: 'assets/images/ai/pushup.png',
-        title: 'AI 푸쉬업\n트레이너'),
+        prepararationTitle: 'AI 푸쉬업\n트레이너'),
     AiTrainerViewData(
         type: ExerciseType.pullup,
         backgroundImagePath: 'assets/images/ai/background_1.jpg',
         bodyImagePath: 'assets/images/ai/pullup.png',
-        title: 'AI 풀업\n트레이너'),
+        prepararationTitle: 'AI 풀업\n트레이너'),
   ];
 }

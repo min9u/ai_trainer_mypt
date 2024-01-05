@@ -86,7 +86,7 @@ class AiTrainerItem extends StatelessWidget {
               top: 70,
               left: 15,
               child: Text(
-                data.title,
+                data.prepararationTitle,
                 style: AppTheme.textTheme.headlineSmall,
               ))
         ],

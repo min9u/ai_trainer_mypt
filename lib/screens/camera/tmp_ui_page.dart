@@ -29,7 +29,7 @@ class _TmpUiPageState extends State<TmpUiPage>
     );
     slideAnimation = Tween<Offset>(
       begin: Offset(0, 0),
-      end: Offset(0, 3), // 변경: 화면 아래로 나가도록 수정
+      end: Offset(0, 2), // 변경: 화면 아래로 나가도록 수정
     ).animate(CurvedAnimation(
       curve: Curves.easeInOut,
       parent: animationController,
