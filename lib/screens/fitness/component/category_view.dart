@@ -18,7 +18,7 @@ class CategoryView extends StatelessWidget {
             children: categoryItemList.map(
           (item) {
             return Padding(
-                padding: const EdgeInsets.fromLTRB(0, 8, 20, 8), child: item);
+                padding: const EdgeInsets.fromLTRB(0, 8, 22, 8), child: item);
           },
         ).toList()));
   }
@@ -28,12 +28,15 @@ class CategoryView extends StatelessWidget {
       children: [
         ClipOval(
           child: Image.asset(data.imagePath,
-              width: 80.0, height: 80.0, fit: BoxFit.cover),
+              width: 85.0, height: 85.0, fit: BoxFit.cover),
         ),
-        Text(data.titleText, style: AppTheme.textTheme.bodyLarge),
+        SizedBox(
+          height: 10,
+        ),
+        Text(data.titleText, style: AppTheme.textTheme.labelLarge),
         Text(
-          "${data.exerciseCount}개",
-          style: AppTheme.textTheme.bodySmall,
+          "${data.exerciseCount} 운동",
+          style: AppTheme.textTheme.labelSmall,
         )
       ],
     );

@@ -62,13 +62,13 @@ class TrackItem extends StatelessWidget {
             borderRadius: BorderRadius.circular(20.0),
             child: Image.asset(
               data.imagePath,
-              width: 100.0,
-              height: 100.0,
+              width: 85.0,
+              height: 85.0,
               fit: BoxFit.cover,
             ),
           ),
           SizedBox(
-            width: 10,
+            width: 16,
           ),
           Container(
             width: 200,
@@ -79,17 +79,28 @@ class TrackItem extends StatelessWidget {
               children: [
                 Text(
                   data.title,
-                  style: AppTheme.textTheme.bodyLarge,
+                  style: AppTheme.textTheme.titleSmall,
+                ),
+                SizedBox(
+                  height: 4,
                 ),
                 Row(
                   children: [
                     SizedBox(
                       child: Text(data.difficulty,
-                          style: AppTheme.textTheme.bodyMedium),
+                          style: TextStyle(
+                              fontFamily: AppTheme.fontName,
+                              fontWeight: FontWeight.w400,
+                              fontSize: 16,
+                              color: AppTheme.lightText)),
                       width: 40,
                     ),
-                    Text('| ${data.time}분',
-                        style: AppTheme.textTheme.bodyMedium)
+                    Text('|   ${data.time}분',
+                        style: TextStyle(
+                            fontFamily: AppTheme.fontName,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 16,
+                            color: AppTheme.lightText))
                   ],
                 )
               ],

@@ -1,7 +1,8 @@
-import 'package:ai_trainer_mypt/screens/record/record_home_screen.dart';
+import 'package:ai_trainer_mypt/screens/diary/record_home_screen.dart';
 import 'package:ai_trainer_mypt/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../models/app_icon_data.dart';
 import 'account/account_home_screen.dart';
 import 'fitness/fitness_home_screen.dart';
 
@@ -21,6 +22,7 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
       appBar: buildAppBar(),
       bottomNavigationBar: NavigationBar(
         height: 60,
+        indicatorColor: Color.fromRGBO(255, 255, 255, 0),
         surfaceTintColor: AppTheme.white,
         backgroundColor: AppTheme.white,
         onDestinationSelected: (int index) {
@@ -31,17 +33,20 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
         selectedIndex: currentPageIndex,
         destinations: const [
           NavigationDestination(
-              selectedIcon: Icon(Icons.run_circle),
-              icon: Icon(Icons.run_circle_outlined),
-              label: '운동'),
+            selectedIcon: Icon(
+              AppIconData.running,
+              color: Color.fromRGBO(80, 195, 134, 1),
+            ),
+            icon: Icon(AppIconData.running),
+            label: '운동',
+          ),
           NavigationDestination(
-              selectedIcon: Icon(Icons.insert_chart),
-              icon: Icon(Icons.insert_chart_outlined),
+              selectedIcon: Icon(
+                  AppIconData.list_alt,
+                  color: Color.fromRGBO(80, 195, 134, 1)),
+              icon:
+                  Icon(AppIconData.list_alt),
               label: '기록'),
-          NavigationDestination(
-              selectedIcon: Icon(Icons.person),
-              icon: Icon(Icons.person_outline),
-              label: '나'),
         ],
       ),
       body: buildScreen(),
@@ -51,24 +56,29 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
   buildAppBar() {
     if (currentPageIndex == 0) {
       return AppBar(
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 18),
+            child:
+                Icon(AppIconData.sistrix),
+          )
+        ],
         backgroundColor: AppTheme.chipBackground,
+        surfaceTintColor: AppTheme.chipBackground,
         title: Text(
           '운동',
-          style: AppTheme.textTheme.headlineSmall,
+          style: AppTheme.textTheme.titleLarge,
         ),
         centerTitle: false,
       );
     } else if (currentPageIndex == 1) {
       return AppBar(
           backgroundColor: AppTheme.chipBackground,
+          surfaceTintColor: AppTheme.chipBackground,
           title: Text(
             '기록',
             style: AppTheme.textTheme.headlineSmall,
           ));
-    } else if (currentPageIndex == 2) {
-      return AppBar(
-          backgroundColor: AppTheme.chipBackground,
-          title: Text('내 정보', style: AppTheme.textTheme.headlineSmall));
     }
   }
 
@@ -77,8 +87,6 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
       return FitnessHomeScreen();
     } else if (currentPageIndex == 1) {
       return RecordHomeScreen();
-    } else if (currentPageIndex == 2) {
-      return AccountHomeScreen();
     }
   }
 }

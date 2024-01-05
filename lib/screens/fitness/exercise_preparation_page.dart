@@ -24,13 +24,13 @@ class ExercisePreparationPage extends StatelessWidget {
         break;
       }
     }
-    print(typeIndex);
 
     return Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.white,
           title: Text(
             '운동 준비',
-            style: AppTheme.textTheme.titleLarge,
+            style: AppTheme.textTheme.titleMedium,
           ),
           actions: [
             IconButton(
@@ -83,7 +83,7 @@ class ExercisePreparationPage extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              bottom: 0,
+                              bottom: -2,
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: 40,
@@ -99,6 +99,7 @@ class ExercisePreparationPage extends StatelessWidget {
                         )),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
+                      color: Colors.white,
                       child: Column(
                         children: [
                           _buildExerciseDescription(
@@ -106,8 +107,8 @@ class ExercisePreparationPage extends StatelessWidget {
                           SizedBox(
                             height: 15,
                           ),
-                          _buildSlideCount(context),
                           _buildCountText(context),
+                          _buildSlideCount(context),
                           SizedBox(
                             height: 200,
                           )
@@ -119,22 +120,27 @@ class ExercisePreparationPage extends StatelessWidget {
               ),
               Positioned(
                 bottom: 50,
-                child: Container(
-                  alignment: Alignment.center,
-                  child: Text(
-                    '운동 시작',
-                    style: AppTheme.whiteTitle,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/aiTrainer');
+                  },
+                  child: Container(
+                    alignment: Alignment.center,
+                    child: Text(
+                      '운동 준비',
+                      style: AppTheme.whiteTitle,
+                    ),
+                    width: MediaQuery.of(context).size.width * 0.8,
+                    height: 60,
+                    decoration: BoxDecoration(
+                        gradient: LinearGradient(colors: [
+                          Color.fromRGBO(82, 201, 115, 1),
+                          Color.fromRGBO(77, 190, 158, 1)
+                        ]),
+                        borderRadius: BorderRadius.horizontal(
+                            left: Radius.circular(40),
+                            right: Radius.circular(40))),
                   ),
-                  width: MediaQuery.of(context).size.width * 0.8,
-                  height: 60,
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        Color.fromRGBO(82, 201, 115, 1),
-                        Color.fromRGBO(77, 190, 158, 1)
-                      ]),
-                      borderRadius: BorderRadius.horizontal(
-                          left: Radius.circular(40),
-                          right: Radius.circular(40))),
                 ),
               ),
             ],
@@ -190,7 +196,7 @@ class ExercisePreparationPage extends StatelessWidget {
         SizedBox(height: 5),
         Text(
           '반복횟수 : ${provider.exerciseInfo.targetCount}',
-          style: AppTheme.textTheme.titleLarge,
+          style: AppTheme.textTheme.titleMedium,
         ),
       ],
     );

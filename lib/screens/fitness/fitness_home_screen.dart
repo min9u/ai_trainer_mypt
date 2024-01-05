@@ -21,10 +21,13 @@ class _FitnessHomeScreenState extends State<FitnessHomeScreen> {
       title: '카테고리',
     ));
     listViews.add(const CategoryView());
+    listViews.add(const SizedBox(
+      height: 16,
+    ));
     listViews.add(TextView(title: 'AI 트레이너'));
     listViews.add(AiTrainerView());
     listViews.add(SizedBox(
-      height: 16,
+      height: 22,
     ));
     listViews.add(TextView(title: '운동 트랙'));
     listViews.add(SizedBox(
@@ -44,7 +47,7 @@ class _FitnessHomeScreenState extends State<FitnessHomeScreen> {
     return Container(
       color: AppTheme.chipBackground,
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 14),
+        padding: const EdgeInsets.only(left: 14),
         child: SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(

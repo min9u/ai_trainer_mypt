@@ -11,7 +11,7 @@ class TextView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Text(this.title, style: AppTheme.textTheme.titleLarge),
+        Text(this.title, style: AppTheme.textTheme.titleMedium),
       ],
     );
   }
