@@ -138,7 +138,7 @@ class _TmpUiPageState extends State<TmpUiPage>
                   builder: (BuildContext context) => AlertDialog(
                     backgroundColor: AppTheme.chipBackground,
                     title: const Text('운동을 중지하시겠습니까?', style: AppTheme.titleMedium,),
-                    content: const Text('운동을 중지하면 운동을 이어서 할 수 없습니다.'),
+                    content: const Text('운동을 중지하고 운동분석결과를 확인합니다.'),
                     actions: <Widget>[
                       TextButton(
                         onPressed: () {

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "813309347313",
+    "project_id": "ai-trainer-mypt",
+    "storage_bucket": "ai-trainer-mypt.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:813309347313:android:54b080348ffaa7dec57050",
+        "android_client_info": {
+          "package_name": "com.example.ai_trainer_mypt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNALy5jpb79x4x3sCVLlTkrOZuWRRcYI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
