@@ -1,7 +1,8 @@
-import 'package:ai_trainer_mypt/screens/record/record_home_screen.dart';
+import 'package:ai_trainer_mypt/screens/diary/record_home_screen.dart';
 import 'package:ai_trainer_mypt/theme.dart';
 import 'package:flutter/material.dart';
 
+import '../models/app_icon_data.dart';
 import 'account/account_home_screen.dart';
 import 'fitness/fitness_home_screen.dart';
 
@@ -33,18 +34,18 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
         destinations: const [
           NavigationDestination(
             selectedIcon: Icon(
-              IconData(0xf70c, fontFamily: 'Icon', fontPackage: null),
+              AppIconData.running,
               color: Color.fromRGBO(80, 195, 134, 1),
             ),
-            icon: Icon(IconData(0xf70c, fontFamily: 'Icon', fontPackage: null)),
+            icon: Icon(AppIconData.running),
             label: '운동',
           ),
           NavigationDestination(
               selectedIcon: Icon(
-                  IconData(0xf022, fontFamily: 'Icon', fontPackage: null),
+                  AppIconData.list_alt,
                   color: Color.fromRGBO(80, 195, 134, 1)),
               icon:
-                  Icon(IconData(0xf022, fontFamily: 'Icon', fontPackage: null)),
+                  Icon(AppIconData.list_alt),
               label: '기록'),
         ],
       ),
@@ -59,7 +60,7 @@ class _MyptAppHomeScreenState extends State<MyptAppHomeScreen> {
           Padding(
             padding: const EdgeInsets.only(right: 18),
             child:
-                Icon(IconData(0xf3ee, fontFamily: 'Icon', fontPackage: null)),
+                Icon(AppIconData.sistrix),
           )
         ],
         backgroundColor: AppTheme.chipBackground,

@@ -83,7 +83,7 @@ class ExercisePreparationPage extends StatelessWidget {
                               ),
                             ),
                             Positioned(
-                              bottom: 0,
+                              bottom: -2,
                               child: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: 40,
@@ -99,6 +99,7 @@ class ExercisePreparationPage extends StatelessWidget {
                         )),
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 20),
+                      color: Colors.white,
                       child: Column(
                         children: [
                           _buildExerciseDescription(
@@ -106,8 +107,8 @@ class ExercisePreparationPage extends StatelessWidget {
                           SizedBox(
                             height: 15,
                           ),
-                          _buildSlideCount(context),
                           _buildCountText(context),
+                          _buildSlideCount(context),
                           SizedBox(
                             height: 200,
                           )
@@ -190,13 +191,13 @@ class ExercisePreparationPage extends StatelessWidget {
 
     return Column(
       children: [
+        Text(emojiMaker(provider.exerciseInfo.targetCount),
+            style: AppTheme.textTheme.headlineSmall),
+        SizedBox(height: 5),
         Text(
           '반복횟수 : ${provider.exerciseInfo.targetCount}',
           style: AppTheme.textTheme.titleMedium,
         ),
-        Text(emojiMaker(provider.exerciseInfo.targetCount),
-            style: AppTheme.textTheme.headlineSmall),
-        SizedBox(height: 5),
       ],
     );
   }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:ai_trainer_mypt/theme.dart';
 
 class ExerciseResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('운동결과'),
+        title: Text('운동결과', style: AppTheme.textTheme.titleMedium,),
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {

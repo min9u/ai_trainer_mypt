@@ -13,7 +13,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'screens/camera/ai_trainer_page.dart';
-import 'screens/record/exercise_result_page.dart';
+import 'screens/diary/exercise_result_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

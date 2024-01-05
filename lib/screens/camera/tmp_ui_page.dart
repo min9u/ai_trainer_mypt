@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:ai_trainer_mypt/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:lorem_ipsum/lorem_ipsum.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:ai_trainer_mypt/theme.dart';
+import 'package:ai_trainer_mypt/models/app_icon_data.dart';
 
 class TmpUiPage extends StatefulWidget {
   const TmpUiPage({super.key});
@@ -42,24 +46,114 @@ class _TmpUiPageState extends State<TmpUiPage>
         // fit: StackFit.expand,
         children: [
           Center(child: const Text('hello')),
-          _buildStartStopButton(),
+          _startStopButton(),
+          _feedbackText(),
+          _settingIconToggle(),
+          _switchLiveCameraToggle(),
+          // 아래는 mordalBarrier. 새로 추가되는 위젯은 이 위에 추가
           if (animationController.status == AnimationStatus.dismissed)
             ModalBarrier(
               color: Colors.black.withOpacity(0.5),
               dismissible: false,
             ),
-          _buildPrecautionsContainer(),
+          _precautionsContainer(),
         ],
       ),
     ));
   }
 
-  Widget _buildStartStopButton() => Positioned(
+  Widget _settingIconToggle() => Positioned(
+        top: 20,
+        right: 10,
+        child: IconButton(
+          onPressed: (){},
+          icon: Icon(
+            Icons.settings,
+            size: 30,
+          ),
+        ),
+      );
+
+  Widget _switchLiveCameraToggle() => Positioned(
+      top: 20,
+      left: 10,
+      child: IconButton(
+        onPressed: (){},
+        icon: Icon(
+            Platform.isIOS
+                ? Icons.flip_camera_ios_outlined
+                : Icons.flip_camera_android_outlined,
+            size: 30),
+      ));
+
+  Widget _feedbackText() => Positioned(
+        bottom: 140,
+        right: 20,
+        child: Container(
+          width: 170,
+          height: 150,
+          padding: EdgeInsets.all(15),
+          child: Column(
+            children: [
+              Text(
+                '완전 이완 : O',
+                style: AppTheme.textTheme.bodyMedium,
+              ),
+              Text(
+                '완전 수축 : X',
+                style: AppTheme.textTheme.bodyMedium,
+              ),
+              Text(
+                '무릎 골반 동시수축 : O',
+                style: AppTheme.textTheme.bodyMedium,
+              ),
+              Text(
+                '무릎의 균형 : O',
+                style: AppTheme.textTheme.bodyMedium,
+              ),
+              Text(
+                '운동수행속도 : O',
+                style: AppTheme.textTheme.bodyMedium,
+              )
+            ],
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+          ),
+          decoration: BoxDecoration(
+              color: Color.fromRGBO(120, 120, 120, 0.2),
+              borderRadius: BorderRadius.all(Radius.circular(30))),
+        ),
+      );
+
+  Widget _startStopButton() => Positioned(
         bottom: 20,
         child: GestureDetector(
           onTap: () {
             setState(() {
-              isExerciseStarted = !isExerciseStarted;
+              if(!isExerciseStarted){
+                isExerciseStarted = !isExerciseStarted;
+              } else {
+                showDialog<String>(
+                  context: context,
+                  builder: (BuildContext context) => AlertDialog(
+                    backgroundColor: AppTheme.chipBackground,
+                    title: const Text('운동을 중지하시겠습니까?', style: AppTheme.titleMedium,),
+                    content: const Text('운동을 중지하면 운동을 이어서 할 수 없습니다.'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, '/exerciseResult');
+                        },
+                        child: const Text('확인'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(),
+                        child: const Text('취소'),
+                      ),
+                    ],
+                  ),
+                );
+              }
             });
           },
           child: AnimatedContainer(
@@ -102,7 +196,7 @@ class _TmpUiPageState extends State<TmpUiPage>
         ),
       );
 
-  Widget _buildPrecautionsContainer() => SlideTransition(
+  Widget _precautionsContainer() => SlideTransition(
         position: slideAnimation,
         child: Container(
           decoration: BoxDecoration(
@@ -116,7 +210,7 @@ class _TmpUiPageState extends State<TmpUiPage>
             children: [
               Text('유의 사항', style: AppTheme.textTheme.headlineSmall),
               Text(
-                '● 몸 전체가 화면에 나오도록 해주세요.\n\n● AI가 사물을 사람으로 인식할 수 있으니, 주변의 사물들을 정리주세요.\n\n● 배경과 구별되는 색의 옷을 착용해주세요.\n\n● 운동시작 버튼을 누르고 5초 후에 분석이 시작됩니다.',
+                '● 핸드폰을 고정시켜서 움직이지 않도록 해주세요.\n\n● AI가 사물을 사람으로 인식할 수 있으니, 주변의 사물들을 정리주세요.\n\n● 배경과 구별되는 색의 옷을 착용해주세요.\n\n● 운동시작 버튼을 누르고 5초 후에 분석이 시작됩니다. 분석이 시작되기 전에 운동을 준비해주세요.\n\n● 카메라에 전체 몸이 보이도록 해주세요.',
                 style: AppTheme.textTheme.bodyLarge,
               ),
               ElevatedButton(

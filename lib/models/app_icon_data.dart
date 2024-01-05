@@ -22,7 +22,7 @@ import 'package:flutter/widgets.dart';
 class AppIconData {
   AppIconData._();
 
-  static const _kFontFam = 'IconData';
+  static const _kFontFam = 'Icon';
   static const String? _kFontPkg = null;
 
   static const IconData faucet =
