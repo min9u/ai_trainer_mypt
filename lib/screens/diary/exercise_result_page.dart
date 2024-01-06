@@ -1,6 +1,7 @@
 import 'package:ai_trainer_mypt/models/exercise_description_data.dart';
 import 'package:ai_trainer_mypt/providers/exercise_info_provider.dart';
 import 'package:ai_trainer_mypt/screens/diary/component/curve_painter.dart';
+import 'package:ai_trainer_mypt/screens/diary/component/line_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:ai_trainer_mypt/theme.dart';
 import 'package:provider/provider.dart';
@@ -88,7 +89,7 @@ class ExerciseResultPage extends StatelessWidget {
                       )),
                   Container(
                       width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.symmetric(horizontal: 20),
+                      padding: EdgeInsets.symmetric(horizontal: 30),
                       color: Colors.white,
                       child: _resultBody())
                 ],
@@ -102,9 +103,10 @@ class ExerciseResultPage extends StatelessWidget {
 
   Widget _resultBody() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Column(
@@ -122,7 +124,13 @@ class ExerciseResultPage extends StatelessWidget {
             _exerciseMetaDataText(),
           ],
         ),
+        SizedBox(
+          height: 20,
+        ),
         _trainerFeedbackGraph(),
+        SizedBox(
+          height: 20,
+        ),
         _trainerFeedbackText(),
         SizedBox(
           height: 500,
@@ -183,8 +191,6 @@ class ExerciseResultPage extends StatelessWidget {
               colors: [
                 Color.fromRGBO(77, 190, 158, 1),
                 Color.fromRGBO(82, 201, 115, 1),
-                // HexColor("#8A98E8"),
-                HexColor("#8A98E8")
               ],
               angle: 360 * 0.5,
             ),
@@ -216,10 +222,11 @@ class ExerciseResultPage extends StatelessWidget {
             '반복 횟수',
             style: AppTheme.textTheme.labelMedium,
           ),
-          Row(
-              children: [
+          Row(children: [
             Text('🏃'),
-            SizedBox(width: 15,),
+            SizedBox(
+              width: 15,
+            ),
             SizedBox(
               width: 8,
             ),
@@ -232,7 +239,10 @@ class ExerciseResultPage extends StatelessWidget {
                   letterSpacing: 0.0,
                   color: AppTheme.grey),
             ),
-            Text(' 개',style: AppTheme.textTheme.labelSmall,)
+            Text(
+              ' 개',
+              style: AppTheme.textTheme.labelSmall,
+            )
           ])
         ],
       )
@@ -257,10 +267,11 @@ class ExerciseResultPage extends StatelessWidget {
             '칼로리 소모',
             style: AppTheme.textTheme.labelMedium,
           ),
-          Row(
-              children: [
+          Row(children: [
             Text('🔥'),
-            SizedBox(width: 15,),
+            SizedBox(
+              width: 15,
+            ),
             SizedBox(
               width: 8,
             ),
@@ -273,7 +284,10 @@ class ExerciseResultPage extends StatelessWidget {
                   letterSpacing: 0.0,
                   color: AppTheme.grey),
             ),
-            Text('  kcal',style: AppTheme.textTheme.labelSmall,)
+            Text(
+              '  kcal',
+              style: AppTheme.textTheme.labelSmall,
+            )
           ])
         ],
       )
@@ -297,10 +311,56 @@ class ExerciseResultPage extends StatelessWidget {
   }
 
   Widget _trainerFeedbackGraph() {
-    return Container();
+    return Container(
+      height: 160,
+      width: 2000,
+      decoration: BoxDecoration(
+        color: AppTheme.grey.withOpacity(0.1),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      padding: EdgeInsets.all(24),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          _feedbackLine('완전이완', 0.8),
+          _feedbackLine('완전수축', 0.6),
+          _feedbackLine('완전이완', 0.4),
+          _feedbackLine('완전수축', 0.3),
+        ],
+      ),
+    );
+    ;
+  }
+
+  Widget _feedbackLine(String feedbackName, double opacity) {
+    // TODO opacity 별로 색깔을 다르게 하도록 개발
+    return Row(
+      children: [
+        Text(
+          feedbackName,
+          style: AppTheme.textTheme.labelMedium,
+        ),
+        SizedBox(
+          width: 30,
+        ),
+        CustomPaint(
+          painter: LinePainter(colors: [
+            Color.fromRGBO(77, 190, 158, 1),
+            Color.fromRGBO(82, 201, 115, 1),
+          ], length: 200, opacity: opacity),
+        ),
+      ],
+    );
   }
 
   Widget _trainerFeedbackText() {
-    return Container();
+    return Container(
+      height: 160,
+      width: 2000,
+      decoration: BoxDecoration(
+        color: AppTheme.grey.withOpacity(0.1),
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+    );
   }
 }
