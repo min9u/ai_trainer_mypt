@@ -50,6 +50,7 @@ class ExercisePreparationPage extends StatelessWidget {
           ],
         ),
         body: Container(
+          color: Colors.white,
           height: MediaQuery.of(context).size.height,
           child: Stack(
             alignment: AlignmentDirectional.topCenter,
@@ -78,7 +79,7 @@ class ExercisePreparationPage extends StatelessWidget {
                               left: 20,
                               bottom: 60,
                               child: Text(
-                                exercises[typeIndex].title,
+                                exercises[typeIndex].preparationTitle,
                                 style: AppTheme.whiteHeadline,
                               ),
                             ),

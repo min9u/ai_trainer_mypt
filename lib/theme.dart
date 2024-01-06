@@ -3,13 +3,16 @@ import 'package:flutter/material.dart';
 class AppTheme {
   AppTheme._();
 
+  // for Color
   static const Color notWhite = Color(0xFFEDF0F2);
   static const Color nearlyWhite = Color(0xFFFEFEFE);
   static const Color white = Color(0xFFFFFFFF);
   static const Color nearlyBlack = Color(0xFF213333);
   static const Color grey = Color(0xFF3A5160);
   static const Color darkGrey = Color(0xFF313A44);
+  static const Color nearlyDarkBlue = Color(0xFF2633C5);
 
+  // for Text
   static const Color darkText = Color(0xFF253840);
   static const Color darkerText = Color(0xFF17262A);
   static const Color lightText = Color(0xFF4A6572);
@@ -34,6 +37,7 @@ class AppTheme {
       fontFamily: fontName);
 
   static const TextTheme textTheme = TextTheme(
+      headlineLarge: headlineLarge,
       headlineMedium: headlineMedium,
       headlineSmall: headlineSmall,
       titleLarge: titleLarge,
@@ -61,13 +65,21 @@ class AppTheme {
     color: white,
   );
 
-  static const TextStyle headlineMedium = TextStyle(
+  static const TextStyle headlineLarge = TextStyle(
     fontFamily: fontName,
     fontWeight: FontWeight.bold,
     fontSize: 36,
     letterSpacing: 0.4,
     height: 0.9,
     color: darkerText,
+  );
+
+  static const TextStyle headlineMedium = TextStyle(
+    fontFamily: fontName,
+    fontWeight: FontWeight.bold,
+    fontSize: 30,
+    letterSpacing: 0.27,
+    color: darkText,
   );
 
   static const TextStyle headlineSmall = TextStyle(
