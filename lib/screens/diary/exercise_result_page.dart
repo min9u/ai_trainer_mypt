@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:ai_trainer_mypt/theme.dart';
 import 'package:provider/provider.dart';
 
+//TODO line painter의 길이 어떻게 정의할지 고민
+
 class ExerciseResultPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -91,7 +93,7 @@ class ExerciseResultPage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.symmetric(horizontal: 30),
                       color: Colors.white,
-                      child: _resultBody())
+                      child: _resultBody(context))
                 ],
               ),
             ),
@@ -101,7 +103,7 @@ class ExerciseResultPage extends StatelessWidget {
     );
   }
 
-  Widget _resultBody() {
+  Widget _resultBody(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -127,7 +129,7 @@ class ExerciseResultPage extends StatelessWidget {
         SizedBox(
           height: 20,
         ),
-        _trainerFeedbackGraph(),
+        _trainerFeedbackGraph(context),
         SizedBox(
           height: 20,
         ),
@@ -297,7 +299,7 @@ class ExerciseResultPage extends StatelessWidget {
   Widget _exerciseMetaDataText() {
     return Container(
       height: 140,
-      width: 200,
+      width: 170,
       decoration: BoxDecoration(
         color: AppTheme.grey.withOpacity(0.1),
         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -310,7 +312,7 @@ class ExerciseResultPage extends StatelessWidget {
     );
   }
 
-  Widget _trainerFeedbackGraph() {
+  Widget _trainerFeedbackGraph(BuildContext context) {
     return Container(
       height: 160,
       width: 2000,
@@ -322,17 +324,18 @@ class ExerciseResultPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _feedbackLine('완전이완', 0.8),
-          _feedbackLine('완전수축', 0.6),
-          _feedbackLine('완전이완', 0.4),
-          _feedbackLine('완전수축', 0.3),
+          _feedbackLine(context, '완전이완', 0.8),
+          _feedbackLine(context, '완전수축', 0.6),
+          _feedbackLine(context, '완전이완', 0.4),
+          _feedbackLine(context, '완전수축', 0.3),
         ],
       ),
     );
     ;
   }
 
-  Widget _feedbackLine(String feedbackName, double opacity) {
+  Widget _feedbackLine(
+      BuildContext context, String feedbackName, double opacity) {
     // TODO opacity 별로 색깔을 다르게 하도록 개발
     return Row(
       children: [
@@ -347,7 +350,7 @@ class ExerciseResultPage extends StatelessWidget {
           painter: LinePainter(colors: [
             Color.fromRGBO(77, 190, 158, 1),
             Color.fromRGBO(82, 201, 115, 1),
-          ], length: 200, opacity: opacity),
+          ], length: MediaQuery.of(context).size.width * 0.5, opacity: opacity),
         ),
       ],
     );
