@@ -53,7 +53,7 @@ class LinePainter extends CustomPainter {
       ..style = PaintingStyle.stroke
       ..strokeWidth = 14;
 
-    canvas.drawLine(Offset(0, 0), Offset(length*opacity, 0), paint);
+    canvas.drawLine(Offset(0, 0), Offset(length * opacity, 0), paint);
 
     // final gradient1 = new SweepGradient(
     //   tileMode: TileMode.repeated,

@@ -63,10 +63,10 @@ class _TmpUiPageState extends State<TmpUiPage>
   }
 
   Widget _settingIconToggle() => Positioned(
-        top: 20,
+        top: 30,
         right: 10,
         child: IconButton(
-          onPressed: (){},
+          onPressed: () {},
           icon: Icon(
             Icons.settings,
             size: 30,
@@ -75,10 +75,10 @@ class _TmpUiPageState extends State<TmpUiPage>
       );
 
   Widget _switchLiveCameraToggle() => Positioned(
-      top: 20,
+      top: 30,
       left: 10,
       child: IconButton(
-        onPressed: (){},
+        onPressed: () {},
         icon: Icon(
             Platform.isIOS
                 ? Icons.flip_camera_ios_outlined
@@ -130,14 +130,17 @@ class _TmpUiPageState extends State<TmpUiPage>
         child: GestureDetector(
           onTap: () {
             setState(() {
-              if(!isExerciseStarted){
+              if (!isExerciseStarted) {
                 isExerciseStarted = !isExerciseStarted;
               } else {
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
                     backgroundColor: AppTheme.chipBackground,
-                    title: const Text('운동을 중지하시겠습니까?', style: AppTheme.titleMedium,),
+                    title: const Text(
+                      '운동을 중지하시겠습니까?',
+                      style: AppTheme.titleMedium,
+                    ),
                     content: const Text('운동을 중지하고 운동분석결과를 확인합니다.'),
                     actions: <Widget>[
                       TextButton(

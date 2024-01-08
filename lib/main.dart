@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           '/': (context) => MyptAppHomeScreen(),
-          '/aiTrainer': (context) => TmpUiPage(),
+          '/aiTrainer': (context) => AiTrainerPage(),
           '/exerciseResult': (context) => ExerciseResultPage(),
         },
       ),
