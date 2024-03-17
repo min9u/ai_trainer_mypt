@@ -1,11 +1,8 @@
 // import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
-import '../utils/function_utils.dart';
 import 'dart:convert';
-
-import 'package:ai_trainer_mypt/utils/tts_voice.dart';
+// import 'package:ai_trainer_mypt/ai_models/tts_voice.dart';
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import 'workout_analysis.dart';
 import 'workout_result.dart';
@@ -18,7 +15,7 @@ const Map<String, List<int>> jointIndx = {
 };
 
 class SquatAnalysis implements WorkoutAnalysis {
-  final Voice speaker = Voice();
+  // final Voice speaker = Voice();
   String _state = 'up'; // up, down, none
 
   Map<String, List<double>> _tempAngleDict = {
@@ -102,7 +99,7 @@ class SquatAnalysis implements WorkoutAnalysis {
         hipAngle < 205 &&
         kneeAngle > 160 &&
         kneeAngle < 205) {
-      speaker.sayStart();
+      // speaker.sayStart();
       isStart = true;
     }
 
@@ -132,7 +129,7 @@ class SquatAnalysis implements WorkoutAnalysis {
         if (isHipUp && isKneeUp && _state == 'down') {
           //개수 카운팅
           ++_count;
-          speaker.countingVoice(_count);
+          // speaker.countingVoice(_count);
           //speaker.stopState();
           int end = DateTime.now().second;
           _state = 'up';
@@ -180,13 +177,13 @@ class SquatAnalysis implements WorkoutAnalysis {
 
           if (_feedBack['not_knee_in']!.last == 1) {
             //무릎이 발 밖으로 나간 경우
-            speaker.sayKneeOut(_count);
+            // speaker.sayKneeOut(_count);
           } else {
             //무릎이 발 안쪽에 있는 경우
             if (_feedBack['hip_dominant']!.last == 1 ||
                 _feedBack['knee_dominant']!.last == 1) {
               // 엉덩이가 먼저 내려가거나 무릎이 먼저 내려간 경우
-              speaker.sayHipKnee(_count);
+              // speaker.sayHipKnee(_count);
             } else {
               //무릎과 엉덩이가 균형있게 내려간 경우
               if (_feedBack['not_relaxation']!.last == 0) {
@@ -195,18 +192,18 @@ class SquatAnalysis implements WorkoutAnalysis {
                   //엉덩이가 완전히 내려간 경우
                   if (_feedBack['is_speed_fast']!.last == 0) {
                     //속도가 적당한 경우
-                    speaker.sayGood1(_count);
+                    // speaker.sayGood1(_count);
                   } else {
                     //속도가 빠른 경우
-                    speaker.sayFast(_count);
+                    // speaker.sayFast(_count);
                   }
                 } else {
                   //엉덩이가 덜 내려간 경우
-                  speaker.sayHipDown(_count);
+                  // speaker.sayHipDown(_count);
                 }
               } else {
                 //엉덩이 덜 이완
-                speaker.sayStretchKnee(_count);
+                // speaker.sayStretchKnee(_count);
               }
             }
           }
@@ -260,7 +257,7 @@ class SquatAnalysis implements WorkoutAnalysis {
 
   @override
   Future<void> startDetectingDelayed() async {
-    speaker.sayStartDelayed();
+    // speaker.sayStartDelayed();
     await Future.delayed(const Duration(seconds: 8), () {
       startDetecting();
     });
@@ -277,7 +274,7 @@ class SquatAnalysis implements WorkoutAnalysis {
   Future<void> stopAnalysingDelayed() async {
     stopAnalysing();
     await Future.delayed(const Duration(seconds: 1), () {
-      speaker.sayEnd();
+      // speaker.sayEnd();
     });
   }
 

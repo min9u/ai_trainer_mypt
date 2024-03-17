@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../utils/function_utils.dart';
 import 'dart:convert';
 
-import 'package:ai_trainer_mypt/utils/tts_voice.dart';
+import 'package:ai_trainer_mypt/ai_models/tts_voice.dart';
 import 'package:google_mlkit_pose_detection/google_mlkit_pose_detection.dart';
 import 'workout_analysis.dart';
 import 'workout_result.dart';
@@ -19,7 +19,7 @@ const Map<String, List<int>> jointIndx = {
 };
 
 class PushUpAnalysis implements WorkoutAnalysis {
-  final Voice speaker = Voice();
+  // final Voice speaker = Voice();
   String _state = 'up'; // up, down, none
 
   Map<String, List<double>> _tempAngleDict = {
@@ -86,7 +86,7 @@ class PushUpAnalysis implements WorkoutAnalysis {
             kneeAngle > 125 &&
             kneeAngle < 180;
         if (isPushUpAngle) {
-          speaker.sayStart();
+          // speaker.sayStart();
           isStart = true;
         }
       }
@@ -106,7 +106,7 @@ class PushUpAnalysis implements WorkoutAnalysis {
             int end = DateTime.now().second;
             _state = 'up';
             _count += 1;
-            speaker.countingVoice(_count);
+            // speaker.countingVoice(_count);
             //speaker.stopState();
 
             if (listMax(_tempAngleDict['right_elbow']!) > 160) {
@@ -160,14 +160,14 @@ class PushUpAnalysis implements WorkoutAnalysis {
 
             if (_feedBack['is_hip_down']!.last == 1) {
               //골반이 내려간 경우
-              speaker.sayHipUp(_count);
+              // speaker.sayHipUp(_count);
             } else if (_feedBack['is_hip_up']!.last == 1) {
               //골반이 올라간 경우
-              speaker.sayHipDown(_count);
+              // speaker.sayHipDown(_count);
             } else {
               if (_feedBack['is_knee_down']!.last == 1) {
                 //무릎이 내려간 경우
-                speaker.sayKneeUp(_count);
+                // speaker.sayKneeUp(_count);
               } else {
                 //무릎이 정상인 경우
                 if (_feedBack['not_elbow_up']!.last == 0) {
@@ -176,18 +176,18 @@ class PushUpAnalysis implements WorkoutAnalysis {
                     // 팔꿈치를 완전히 굽힌 경우
                     if (feedBack['is_speed_fast']!.last == 0) {
                       //속도가 적당한 경우
-                      speaker.sayGood1(_count);
+                      // speaker.sayGood1(_count);
                     } else {
                       //속도가 빠른 경우
-                      speaker.sayFast(_count);
+                      // speaker.sayFast(_count);
                     }
                   } else {
                     //팔꿈치를 덜 굽힌 경우
-                    speaker.sayBendElbow(_count);
+                    // speaker.sayBendElbow(_count);
                   }
                 } else {
                   // 팔꿈치를 덜 핀 경우
-                  speaker.sayStretchElbow(_count);
+                  // speaker.sayStretchElbow(_count);
                 }
               }
             }
@@ -240,7 +240,7 @@ class PushUpAnalysis implements WorkoutAnalysis {
   }
 
   Future<void> startDetectingDelayed() async {
-    speaker.sayStartDelayed();
+    // speaker.sayStartDelayed();
     await Future.delayed(const Duration(seconds: 8), () {
       startDetecting();
     });
@@ -257,7 +257,7 @@ class PushUpAnalysis implements WorkoutAnalysis {
   Future<void> stopAnalysingDelayed() async {
     stopAnalysing();
     await Future.delayed(const Duration(seconds: 1), () {
-      speaker.sayEnd();
+      // speaker.sayEnd();
     });
   }
 

@@ -324,14 +324,14 @@ class ExerciseResultPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _feedbackLine(context, '완전이완', 0.8),
-          _feedbackLine(context, '완전수축', 0.6),
-          _feedbackLine(context, '완전이완', 0.4),
-          _feedbackLine(context, '완전수축', 0.3),
+          _feedbackLine(context, '운동 속도', 0.8),
+          _feedbackLine(context, '완전 수축', 0.9),
+          _feedbackLine(context, '완전 이완', 0.9),
+          _feedbackLine(context, '무릎 안정', 0.4),
+          _feedbackLine(context, '골반 안정', 0.7),
         ],
       ),
     );
-    ;
   }
 
   Widget _feedbackLine(
@@ -358,12 +358,14 @@ class ExerciseResultPage extends StatelessWidget {
 
   Widget _trainerFeedbackText() {
     return Container(
-      height: 160,
-      width: 2000,
-      decoration: BoxDecoration(
-        color: AppTheme.grey.withOpacity(0.1),
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-      ),
-    );
+        height: 160,
+        width: 2000,
+        decoration: BoxDecoration(
+          color: AppTheme.grey.withOpacity(0.1),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
+        ),
+        padding: EdgeInsets.all(16.0),
+        child: Text(
+            '적절한 속도로 운동하고 있어요. 운동시 완전수축, 완전운동을 통해 큰 가동범위를 사용하고 있어요.\n\n하지만 무릎과 골반이 동시에 수축하지 않고 따로 수축하고 있어요. 동시에 관절들을 움직이지 않으면 무릎과 골반의 부상을 야기할 수 있어요.'));
   }
 }
